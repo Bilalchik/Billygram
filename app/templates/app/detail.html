@@ -1,0 +1,52 @@
+{% extends 'app/base.html' %}
+{% load static %}
+
+
+{% block link %}
+  <link href="{% static 'css/detail.css' %}" rel="stylesheet"/>
+  <script src="{% static 'js/detail.js' %}"></script>
+
+{% endblock %}
+
+
+{% block content %}
+    <html>
+      <body>
+        <button id="modal-btn">Open Modal1</button>
+        <div id="modal" class="feed-form-modal-container feed-form-modal-show">
+          <div id="modal-window" class="feed-form-detail-modal">
+            <div class="feed-form-modal-title-container">
+              <div class="feed-form-modal-title">
+                <div class="feed-form-modal-title-side">before</div>
+                <div>new post</div>
+                <div class="feed-form-modal-title-side">next</div>
+              </div>
+            </div>
+            <div class="feed-form-modal-content-container">
+              <div class="feed-form-detail">
+                <div class="feed-form-image-slider">
+                    <div class="feed-form-slide">
+
+                      <img class="feed-form-slide-image" src="{{ post.image.url }}" alt=""/>
+                  </div>
+                </div>
+                <div class="feed-form-description">
+                  <div class="feed-form-description-user">
+                    <div class="feed-form-description-profile">
+                      <img class="feed-form-description-profile-image" src="https://raw.githubusercontent.com/comeduschool/instagram/django/reactjs/web/public/assets/test-profile.jpeg" alt=""/>
+                    </div>
+                    <div class="feed-form-description-useranem">
+                      comedu
+                    </div>
+                  </div>
+                  <div class="feed-form-description-input-container">
+                    <textarea class="feed-form-description-input" placeholder="Enter text..."></textarea>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </body>
+    </html>
+{% endblock %}

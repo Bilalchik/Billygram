@@ -1,0 +1,25 @@
+{% extends 'app/base.html' %}
+{% load static %}
+
+{% block link %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/auth.css' %}">
+{% endblock %}
+
+{% block nav %}
+{% endblock %}
+
+{% block content %}
+    <div class="center">
+      <form class="form" method="POST">
+          {% csrf_token %}
+        <img class="form-logo" src="https://www.instagram.com/static/images/web/logged_out_wordmark-2x.png/d2529dbef8ed.png" alt="logo.png"/>
+        <input class="form-input" name="username" id="username" type="text" placeholder="Username" />
+        <input class="form-input" name="password" id="password" type="password" placeholder="Password" />
+        <button class="form-btn form-btn-blue" type="submit" >log in</button>
+        <a class="password-link link-noline" href="#"><span class="password-link-text">Forgot your password?</span></a>
+      </form>
+      <div class="center-item">
+        Don't have an account? <a href="{% url 'register' %}" class="signup-link">sign up</a>
+      </div>
+    </div>
+{% endblock content %}

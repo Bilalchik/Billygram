@@ -1,0 +1,86 @@
+{% extends 'app/base.html' %}
+{% load static %}
+
+
+{% block link %}
+<link href="{% static 'css/list.css' %}" rel="stylesheet" xmlns="http://www.w3.org/1999/html"/>
+{% endblock %}
+
+
+{% block content %}
+<br>
+<br>
+    <div class="center">
+      <div class="feeds">
+          {% for post in posts %}
+            <div class="feed">
+              <div class="feed-header">
+                <div class="feed-header-content">
+                  <div class="feed-header-profile-containter">
+                    <img class="feed-header-profile" src="https://raw.githubusercontent.com/comeduschool/instagram/django/reactjs/web/public/assets/test-profile.jpeg" alt="test profile" />
+                    <a href="{% url 'index' post.user.pk %}" class="feed-header-username">{{ post.user.username }} </a>
+                  </div>
+                  <img src="https://raw.githubusercontent.com/comeduschool/instagram/django/reactjs/web/public/assets/icons/more.svg" alt="more icon" />
+                </div>
+              </div>
+              <div class="feed-content-image">
+                <div>
+                  <a href="{% url 'detail' post.pk %}" >
+                    <img class="feed-image" src="{{  post.image.url }}" alt="test image"/>
+                  </a>
+                </div>
+              </div>
+              <div class="feed-content">
+                <div class="feed-content-icons">
+                  <span class="feed-content-icon">
+                    <button data-user="{{request.user.id}}" data-post="{{post.id}}"  id="like-btn"><img src="https://raw.githubusercontent.com/comeduschool/instagram/django/reactjs/web/public/assets/icons/favorite-outlined.svg" alt="favorite icon"/></button>
+                  </span>
+                  <span class="feed-content-icon">
+                    <img src="https://raw.githubusercontent.com/comeduschool/instagram/django/reactjs/web/public/assets/icons/reply-outlined.svg" alt="comment icon"/>
+                  </span>
+                  <span class="feed-content-icon">
+                    <img src="https://raw.githubusercontent.com/comeduschool/instagram/django/reactjs/web/public/assets/icons/send-outlined.svg" alt="message icon"/>
+                  </span>
+                  <span class="feed-content-icon-left">
+                    <img src="https://raw.githubusercontent.com/comeduschool/instagram/django/reactjs/web/public/assets/icons/saved-outlined.svg" alt="save icon"/>
+                  </span>
+                </div>
+                <p class="feed-favorites">{{ post.likes.all|length }} отметок "Нравится"</p>
+                <p class="feed-description"><span class="feed-username">comedu</span>{{ post.description }}</p>
+
+                <p class="feed-replies">댓글 7,519개 모두보기</p>
+
+                <p class="feed-description"><span class="feed-username">comedu</span> hello this is the feed I made.</p>
+                <p class="feed-description"><span class="feed-username">comedu</span> hello this is the feed I made.</p>
+                <p class="feed-time">2분 전</p>
+              </div>
+              <div class="feed-comment-input-container">
+                <span class="feed-comment-icon">
+                  <img src="https://raw.githubusercontent.com/comeduschool/instagram/django/reactjs/web/public/assets/icons/smile.svg" alt="emoticon icon" />
+                </span>
+                <input class="feed-comment-input" type="text" placeholder="댓글 달기..." />
+                <button class="feed-comment-btn">게시</button>
+              </div>
+            </div>
+          {% endfor %}
+      </div>
+    </div>
+    <script>
+      $(document).ready(function () {
+      const likeBtn  = document.querySelector('#like-btn')
+
+      likeBtn.addEventListener('click', () => {
+          $.ajax({
+             type: 'POST',
+             data: {'user_id': likeBtn.dataset.user, 'post_id': likeBtn.dataset.post},
+             url: 'http://127.0.0.1:8000/api/like/',
+             success: function(res){
+                     console.log(res)
+             }
+         })
+      })
+      }
+      )
+
+    </script>
+{% endblock content %}

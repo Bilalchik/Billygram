@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+{% load static %}
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script
+    src="https://code.jquery.com/jquery-3.6.0.slim.js"
+    integrity="sha256-HwWONEZrpuoh951cQD1ov2HUK5zA5DwJ1DNUXaM6FsY="
+    crossorigin="anonymous"></script>
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
+    <link rel='stylesheet' type='text/css' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css'>
+    <link href="{% static 'css/nav.css' %}" rel="stylesheet"/>
+    <script src="{% static 'js/nav.js' %}"></script>
+
+    {% block link %}
+        <link href="{% static 'css/nav.css' %}" rel="stylesheet"/>
+    {% endblock %}
+</head>
+
+<body>
+  {% block nav %}
+<!--  <nav>-->
+<!--    <div class="nav-container">-->
+<!--      <div class="nav-left">-->
+<!--          <a href="{% url 'list' %}"><img class="logo" src="https://raw.githubusercontent.com/comeduschool/instaclone/main/web/public/logo2.png" alt="logo.png"></a>-->
+<!--      </div>-->
+<!--      <div class="nav-center"></div>-->
+<!--      <div class="nav-right">-->
+<!--        <span class="nav-item">-->
+<!--            <a href="{% url 'list' %}"><img class="nav-item-icon" src="https://raw.githubusercontent.com/comeduschool/instagram/django/reactjs/web/public/assets/icons/home-outlined.svg" alt="home.svg" /></a>-->
+<!--        </span>-->
+<!--        <span class="nav-item">-->
+<!--            <a href="{% url 'create_post' %}"><img  class="nav-item-icon" src="https://raw.githubusercontent.com/comeduschool/instagram/django/reactjs/web/public/assets/icons/add-outlined.svg" /></a>-->
+<!--        </span>-->
+<!--        <span class="nav-item">-->
+<!--            <a href="{% url 'index' request.user.pk %}"><img class="nav-item-profile" src="https://raw.githubusercontent.com/comeduschool/instagram/django/reactjs/web/public/assets/test-profile.jpeg" alt="profile" /></a>-->
+<!--            <div class="nav-menu">-->
+<!--                <div class="nav-menu-contaner-show">-->
+<!--                  <div class="nav-menu-contaner-tail"></div>-->
+<!--                  <div class="nav-menu-item-list">-->
+<!--                    <a href="{% url 'index' request.user.pk %}"  class="icon-label-container">-->
+<!--                      <img class="nav-menu-icon" src="https://raw.githubusercontent.com/comeduschool/instagram/django/reactjs/web/public/assets/icons/profile.svg" alt="profile.svg" />-->
+<!--                      <span class="icon-label">profile</span></a>-->
+<!--                    <a href="#!" class="icon-label-container">-->
+<!--                      <img class="nav-menu-icon"  src="https://raw.githubusercontent.com/comeduschool/instagram/django/reactjs/web/public/assets/icons/setting.svg" alt="profile.svg" />-->
+<!--                      <span class="icon-label">settings</span></a>-->
+<!--                    <a href="{% url 'logout' %}"  class="icon-label-container nav-menu-logout">-->
+<!--                      <span class="icon-label">Log out</span></a>-->
+
+<!--                  </div>-->
+<!--              </div>-->
+<!--            </div>-->
+<!--        </span>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--  </nav>-->
+
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <!-- Container wrapper -->
+  <div class="container-fluid">
+    <!-- Toggle button -->
+    <button class="navbar-toggler" type="button" data-mdb-toggle="collapse" data-mdb-target="#navbarCenteredExample"
+      aria-controls="navbarCenteredExample" aria-expanded="false" aria-label="Toggle navigation">
+      <i class="fas fa-bars"></i>
+    </button>
+
+    <!-- Collapsible wrapper -->
+    <div class="collapse navbar-collapse justify-content-center" id="navbarCenteredExample">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-1"></div>
+          <div class="col-md-5">
+            <a class="navbar-brand" href="{% url 'list' %}">
+              <img src="https://www.instagram.com/static/images/web/mobile_nav_type_logo.png/735145cfe0a4.png"
+                height="30" alt="" loading="lazy" />
+            </a>
+          </div>
+          <div class="col-md-2">
+            <form class="d-flex input-group w-auto" action="get" method="get">
+              {% csrf_token %}
+<!--              {{ search.as_p }}-->
+              <input type="search" name='search_term' class="form-control" placeholder="Search" aria-label="Search" />\
+              <button type="submit">serch</button>
+            </form>
+          </div>
+          <div class="col-md-3">
+            <ul class="navbar-nav justify-content-center">
+              <!-- Icons -->
+              <li class="nav-item me-3 me-lg-0">
+                <a class="nav-link" href="#">
+                  <i class="fas fa-home fa-lg text-dark"></i>
+                </a>
+              </li>
+              <li class="nav-item me-3 me-lg-0">
+                <a class="nav-link" href="#">
+                  <i class="fas fa-paper-plane fa-lg text-dark"></i>
+                </a>
+              </li>
+              <li class="nav-item me-3 me-lg-0">
+                <a class="nav-link" href="#">
+                  <i class="far fa-compass fa-lg text-dark"></i>
+                </a>
+              </li>
+              <li class="nav-item me-3 me-lg-0">
+                <a class="nav-link" href="{% url 'create_post' %}">
+                  <i class="far fa-heart fa-lg text-dark"></i>
+                </a>
+              </li>
+              <!-- Avatar -->
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle d-flex align-items-center" href="{% url 'index' request.user.pk %}" id="navbarDropdownMenuLink"
+                  role="button" data-mdb-toggle="dropdown" aria-expanded="false">
+                  <img src="https://mdbootstrap.com/img/new/avatars/1.jpg" class="rounded-circle" height="22" alt=""
+                    loading="lazy" />
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                  <li>
+                    <a class="dropdown-item" href="#">My profile</a>
+                  </li>
+                  <li><a class="dropdown-item" href="#">Settings</a></li>
+                  <li><a class="dropdown-item" href="#">Logout</a></li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Collapsible wrapper -->
+  </div>
+  <!-- Container wrapper -->
+</nav>
+<!-- Navbar -->
+  {% endblock %}
+
+  {% block content %}
+  {% endblock %}
+
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+  <script src="{% static 'js/api.js' %}" > </script>
+
+</body>
+</html>
